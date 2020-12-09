@@ -2,8 +2,9 @@
 #include<iostream>
 using namespace std;
 
+
 TLinkList::TLinkList() {
-	this->head = new node;
+	this->head = new NODE;
 	this->head->coe = -100;
 	this->head->ind = -86;
 	this->head->pre = nullptr;
@@ -11,7 +12,7 @@ TLinkList::TLinkList() {
 	this->head->next = nullptr;
 }
 
-int TLinkList::compare(node a, node b) {
+int TLinkList::compare(NODE a, NODE b) {
 	if (a.ind > b.ind) {
 		return 1;
 	}
@@ -23,24 +24,22 @@ int TLinkList::compare(node a, node b) {
 	}
 }
 
-void TLinkList::addNode(node target) {
-	node* cur;//比较两个节点的值
+void TLinkList::addNode(NODE target) {
+	NODE* cur;//比较两个节点的值
 	if (target.coe == 0) {//如果系数为0
 		return;
 	}
 	//寻找的目标是待插入节点位置的前一个
 	for (cur = head; cur->next != nullptr && compare(target, *(cur->next)) > 0; cur = cur->next);
 	if (cur == tail) {//如果没有符合要求的节点位置
-		node* temp = new node;
-		temp->coe = target.coe;
-		temp->ind = target.ind;
+		NODE* temp = new NODE;
+		*temp = getNode(target.coe, target.ind);
 		temp->pre = tail;
-		temp->next = nullptr;
 		tail->next = temp;
 		tail = temp;
 	}
 	else if (cur->next->ind == target.ind) {
-		node* tempTarget = cur->next;
+		NODE* tempTarget = cur->next;
 		tempTarget->coe += target.coe;
 		if (tempTarget->coe == 0) {//完成后的节点次数为0则进行删除操作
 			printf("系数为0,删除\n");
@@ -52,9 +51,8 @@ void TLinkList::addNode(node target) {
 		}
 	}
 	else if (target.ind > cur->ind) {//如果找到目标位置,且该次数未出现
-		node* tempNode = new node;
-		tempNode->coe = target.coe;
-		tempNode->ind = target.ind;
+		NODE* tempNode = new NODE;
+		*tempNode = getNode(target.coe, target.ind);
 		tempNode->pre = cur;
 		tempNode->next = cur->next;
 		cur->next = tempNode;
@@ -66,14 +64,12 @@ void TLinkList::addNode(node target) {
 }
 
 void TLinkList::addNode(int coe, int ind) {
-	node temp;
-	temp.coe = coe;
-	temp.ind = ind;
+	NODE temp=getNode(coe,ind);
 	addNode(temp);
 }
 
 void TLinkList::showLinkData() {
-	node* cur = nullptr;
+	NODE* cur = nullptr;
 	if (head->next == nullptr) {
 		cout << "\a为空" << endl;
 	}
@@ -92,7 +88,7 @@ void TLinkList::addOneForTest(int coe, int ind) {
 
 void TLinkList::PolyAdd(TLinkList a, TLinkList b) {
 	TLinkList* result = new TLinkList;
-	node* cur;
+	NODE* cur;
 	for (cur = a.head->next; cur != nullptr; cur = cur->next) {
 		result->addNode(*cur);
 	}
