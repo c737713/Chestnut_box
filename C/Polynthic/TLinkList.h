@@ -23,6 +23,7 @@ public:
 	void showLinkData();
 	//增加一个节点
 	void addOneForTest(int coe, int ind);
-	//节点相加
+	//多项式相加
+	void PolyAdd(TLinkList a, TLinkList b);
 };
 

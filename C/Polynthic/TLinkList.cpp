@@ -25,7 +25,6 @@ int TLinkList::compare(node a, node b) {
 
 void TLinkList::addNode(node target) {
 	node* cur;//比较两个节点的值
-	printf("插入数据为%d*X^%d\n", target.coe, target.ind);
 	if (target.coe == 0) {//如果系数为0
 		return;
 	}
@@ -89,4 +88,17 @@ void TLinkList::showLinkData() {
 
 void TLinkList::addOneForTest(int coe, int ind) {
 	addNode(coe, ind);
+}
+
+void TLinkList::PolyAdd(TLinkList a, TLinkList b) {
+	TLinkList* result = new TLinkList;
+	node* cur;
+	for (cur = a.head->next; cur != nullptr; cur = cur->next) {
+		result->addNode(*cur);
+	}
+	for (cur = b.head->next; cur != nullptr; cur = cur->next) {
+		result->addNode(*cur);
+	}
+	this->head = result->head;
+	this->tail = result->tail;
 }
