@@ -2,7 +2,6 @@
 #include<iostream>
 using namespace std;
 
-
 TLinkList::TLinkList() {
 	this->head = new NODE;
 	this->head->coe = -100;
@@ -64,7 +63,7 @@ void TLinkList::addNode(NODE target) {
 }
 
 void TLinkList::addNode(int coe, int ind) {
-	NODE temp=getNode(coe,ind);
+	NODE temp = getNode(coe, ind);
 	addNode(temp);
 }
 
@@ -95,6 +94,53 @@ void TLinkList::PolyAdd(TLinkList a, TLinkList b) {
 	for (cur = b.head->next; cur != nullptr; cur = cur->next) {
 		result->addNode(*cur);
 	}
-	this->head = result->head;
-	this->tail = result->tail;
+	this->giveValue(*result);
+}
+
+inline TLinkList::NODE TLinkList::nodeMul(NODE a, NODE b) {
+	int coe = a.coe * b.coe;
+	int ind = a.ind + b.ind;
+	return getNode(coe, ind);
+}
+
+inline TLinkList::NODE TLinkList::getNode(int coe, int ind) {
+	NODE temp;
+	temp.pre = nullptr;
+	temp.next = nullptr;
+	temp.ind = ind;
+	temp.coe = coe;
+	return temp;
+}
+
+void TLinkList::PolyMul(TLinkList a, TLinkList b) {
+	NODE* curI, * curJ;
+	TLinkList* result = new TLinkList;
+	for (curI = a.head->next; curI != nullptr; curI = curI->next) {
+		for (curJ = b.head->next; curJ != nullptr; curJ = curJ->next) {
+			NODE temp = nodeMul(*curI, *curJ);
+			result->addNode(temp);
+		}
+	}
+	this->giveValue(*result);
+}
+
+void TLinkList::PolyCut(TLinkList a, TLinkList b) {
+	TLinkList* result = new TLinkList;
+	NODE* cur;
+	for (cur = a.head->next; cur != nullptr; cur = cur->next) {
+		NODE temp = *cur;
+		temp.coe = -1 * temp.coe;
+		result->addNode(*cur);
+	}
+	for (cur = b.head->next; cur != nullptr; cur = cur->next) {
+		NODE temp = *cur;
+		temp.coe = -1 * temp.coe;
+		result->addNode(*cur);
+	}
+	this->giveValue(*result);
+}
+
+inline void TLinkList::giveValue(TLinkList b) {
+	this->head = b.head;
+	this->tail = b.tail;
 }

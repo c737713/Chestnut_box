@@ -15,7 +15,13 @@ private:
 	//比较两个节点的值
 	int compare(NODE a, NODE b);
 	//两个节点相乘
-	void nodeMul(NODE a, NODE b,NODE*c);
+	void nodeMul(NODE a, NODE b, NODE* c);
+	//节点构造函数
+	inline NODE getNode(int coe, int ind);
+	//节点相乘函数
+	inline NODE nodeMul(NODE a, NODE b);
+	//赋值函数,a将获得b的值
+	inline void giveValue(TLinkList b);
 public:
 	NODE* head;//记录头节点的地址
 	NODE* tail;//记录最后一个非null的节点
@@ -27,22 +33,9 @@ public:
 	void addOneForTest(int coe, int ind);
 	//多项式相加
 	void PolyAdd(TLinkList a, TLinkList b);
-private:
-	//部分函数无法内联
-	//节点构造函数
-	inline NODE getNode(int coe, int ind) {
-		NODE temp;
-		temp.pre = nullptr;
-		temp.next = nullptr;
-		temp.ind = ind;
-		temp.coe = coe;
-		return temp;
-	}
-	//节点相乘函数
-	inline NODE nudeMul(NODE a, NODE b) {
-		int coe = a.coe * b.coe;
-		int ind = a.ind + b.ind;
-		return getNode(coe, ind);
-	}
+	//多项式相乘
+	void PolyMul(TLinkList a, TLinkList b);
+	//多项式相减
+	void PolyCut(TLinkList a, TLinkList b);
 };
 
