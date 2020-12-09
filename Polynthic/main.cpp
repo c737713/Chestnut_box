@@ -8,7 +8,7 @@ int main() {
 	cin >> a;
 	while (a != -1) {
 		cin >> b;
-		list.addOne(a, b);
+		list.addOneForTest(a, b);
 		list.showLinkData();
 		cin >> a;
 	}

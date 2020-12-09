@@ -87,6 +87,6 @@ void TLinkList::showLinkData() {
 	cout << endl;
 }
 
-void TLinkList::addOne(int coe, int ind) {
+void TLinkList::addOneForTest(int coe, int ind) {
 	addNode(coe, ind);
 }

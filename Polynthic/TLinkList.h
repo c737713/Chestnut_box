@@ -22,6 +22,7 @@ public:
 	//浏览链表的内容
 	void showLinkData();
 	//增加一个节点
-	void addOne(int coe, int ind);
+	void addOneForTest(int coe, int ind);
+	//节点相加
 };
 
