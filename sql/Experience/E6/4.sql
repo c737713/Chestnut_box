@@ -1,4 +1,4 @@
-/*after 触发器*/
+/*after 触发器
 IF(OBJECT_ID('triggrade_after')IS NOT NULL )
 BEGIN
     DROP TRIGGER triggrade
@@ -18,6 +18,7 @@ IF(@tGrade>100)
     PRINT('成绩超过上限,修订为100')
     END;
 GO
+*/
 /*instead 触发器*/
 IF(OBJECT_ID('triggrade_instead')IS NOT NULL )
 BEGIN

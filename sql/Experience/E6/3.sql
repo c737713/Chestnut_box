@@ -5,12 +5,10 @@ END;
 GO
 
 CREATE TRIGGER trigsex ON Student
-AFTER INSERT,UPDATE 
-AS
-DECLARE @newsex VARCHAR(10)
-SELECT Ssex
-FROM INSERTED
-IF(@newsex!='男' or @newsex!='女')
+AFTER INSERT,UPDATE AS
+DECLARE @newsex VARCHAR(20)
+SELECT @newsex=Ssex FROM inserted
+IF(@newsex!='男' and @newsex!='女')
     BEGIN
     PRINT '非法性别'
     ROLLBACK
