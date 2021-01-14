@@ -20,4 +20,16 @@ public class TreeNode {
         childList = null;
         attribute = null;
     }
+
+    public String getOutPut() {
+        return outPut;
+    }
+
+    public String getLeafValue() {
+        return leafValue;
+    }
+
+    public String getAttribute() {
+        return attribute;
+    }
 }

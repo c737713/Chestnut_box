@@ -14,6 +14,7 @@ import java.util.Objects;
 public class DataBase {
     //存储元组集
     ArrayList<Tuple> tupleArrayList;
+
     //存储属性名集
     ArrayList<String> stringArrayList;
 
@@ -23,25 +24,17 @@ public class DataBase {
         stringArrayList.addAll(Arrays.asList(strings));
     }
 
-    public static DataBase getDataBaseByFile(String pn) {
+    public static DataBase getDataBaseByFile(String pn)throws Exception {
         ArrayList<String> strings = new ArrayList<>();
-        try {
-            FileReader fr = new FileReader(pn);
-            BufferedReader bfReader = new BufferedReader(fr);
-            String tempString = bfReader.readLine();
-            while (tempString != null) {
-                strings.add(tempString.trim());
-                tempString = bfReader.readLine();
-            }
-            bfReader.close();
-            fr.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("未找到目标文件");
-            e.printStackTrace();
-        } catch (IOException e) {
-            System.out.println("缓冲错误");
-            e.printStackTrace();
+        FileReader fr = new FileReader(pn);
+        BufferedReader bfReader = new BufferedReader(fr);
+        String tempString = bfReader.readLine();
+        while (tempString != null) {
+            strings.add(tempString.trim());
+            tempString = bfReader.readLine();
         }
+        bfReader.close();
+        fr.close();
         String[] tempStrings = strings.get(0).split(" ");
         DataBase db = new DataBase(tempStrings);
         db.stringArrayList.remove(db.stringArrayList.size() - 1);
