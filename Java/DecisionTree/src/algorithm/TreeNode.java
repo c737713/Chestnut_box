@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class TreeNode {
     String outPut;
-    Boolean leafValue;
+    String leafValue;
     String attribute;
 
     ArrayList<Integer> indexList;

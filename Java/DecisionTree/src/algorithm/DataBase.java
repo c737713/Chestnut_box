@@ -23,10 +23,6 @@ public class DataBase {
         stringArrayList.addAll(Arrays.asList(strings));
     }
 
-    public ArrayList<Tuple> getTupleArrayList() {
-        return tupleArrayList;
-    }
-
     public static DataBase getDataBaseByFile(String pn) {
         ArrayList<String> strings = new ArrayList<>();
         try {
@@ -56,30 +52,16 @@ public class DataBase {
         return db;
     }
 
-    /**
-     * @param optionList:作为元组的数据源
-     * @param value:作为标签的值
-     */
-    public void addTuple(String[] optionList, Boolean value) {
-        Tuple temp;
-        try {
-            temp = new Tuple(this, optionList, value);
-            tupleArrayList.add(temp);
-        } catch (SecondException e) {
-            e.printStackTrace();
-        }
-    }
-
+    /**@param optionList:添加元组
+     * @apiNote 添加元组
+     * */
     public void addTuple(String[] optionList) {
         Tuple temp;
         String[] strings=new String[this.stringArrayList.size()];
         try {
-            Boolean bl = true;
-            if ("false".equals(optionList[optionList.length - 1])) {
-                bl = false;
-            }
+            String labelValue=optionList[optionList.length-1];
             System.arraycopy(optionList, 0, strings, 0, this.stringArrayList.size());
-            temp = new Tuple(this, strings, bl);
+            temp = new Tuple(this, strings, labelValue);
             tupleArrayList.add(temp);
         } catch (SecondException e) {
             e.printStackTrace();
@@ -87,32 +69,34 @@ public class DataBase {
     }
 
     /**
-     * @param range:下标数组的范围
+     * @param tA:下标数组的范围
      * @return :信息熵
      * 计算信息熵:区域内正标签比重与负标签比重经过一定计算得到的值,用来计算比重的优先级
      */
-    private double informationEntropy(Integer[] range) {
-        var numOfT = 0;
-        var numOfF = 0;
-        for (Integer integer : range) {
-            if (tupleArrayList.get(integer).labelValue) {
-                numOfT++;
-            } else {
-                numOfF++;
+
+    private double informationEntropy(ArrayList<Integer> tA){
+        ArrayList<Label> labelList=new ArrayList<>();
+        for(Integer index:tA){
+            String tempString=this.tupleArrayList.get(index).labelValue;
+            boolean repeated=false;
+            for (Label label : labelList) {
+                if (tempString.equals(label.labelValue)) {
+                    label.labelCount++;
+                    repeated = true;
+                    break;
+                }
+            }
+            if(!repeated){
+                labelList.add(new Label(tempString));
+                labelList.get(labelList.size()-1).labelCount++;
             }
         }
-        return informationEntropy(numOfT, numOfF);
-    }
-
-    private double informationEntropy(ArrayList<Integer> tA) {
-        Integer[] tB = arrayListTranslator(tA);
-        return informationEntropy(tB);
-    }
-
-    private double informationEntropy(Integer numOfT, Integer numOfF) {
-        double t = (double) numOfT / (numOfF + numOfT);
-        double f = (double) numOfF / (numOfF + numOfT);
-        return -t * Math.log(f) / Math.log(2.0) - f * Math.log(t) / Math.log(2);
+        var result=0.0;
+        for(Label temp:labelList){
+            double ra=temp.labelCount/ (double)labelList.size();
+            result-=ra*Math.log(ra)/Math.log(2.0);
+        }
+        return result;
     }
 
     /**
@@ -124,17 +108,17 @@ public class DataBase {
     private ArrayList<OptionList> differentiatedTupleSets(ArrayList<Integer> iRange, String attribute) {
         ArrayList<OptionList> tempList = new ArrayList<>();
         int attributeIndex = attributeIndex(attribute);
-        for (Integer integer : iRange) {
+        for (Integer index : iRange) {
             //获取这个元组在这个属性的选项
-            String temp = this.tupleArrayList.get(integer).infoList[attributeIndex];
+            String temp = this.tupleArrayList.get(index).infoList[attributeIndex];
             int flag = notRepeated(tempList, temp);
             if (flag == -1) {
                 //如果不重复则添加新的选项集
                 tempList.add(new OptionList(temp));
-                tempList.get(tempList.size() - 1).indexList.add(integer);
+                tempList.get(tempList.size() - 1).indexList.add(index);
             } else {
                 //如果重复则为这个结果集内部的添加该下标
-                tempList.get(flag).indexList.add(integer);
+                tempList.get(flag).indexList.add(index);
             }
         }
         return tempList;
@@ -196,32 +180,6 @@ public class DataBase {
     }
 
     /**
-     * @param target:被翻译的IntegerArrayList
-     * @return 翻译完成的Integer
-     */
-    private Integer[] arrayListTranslator(ArrayList<Integer> target) {
-        Integer[] result = new Integer[target.size()];
-        for (int i = 0; i < target.size(); i++) {
-            result[i] = target.get(i);
-        }
-        return result;
-    }
-
-    /**
-     * @param range:下标的范围
-     * @return 范围内下标true的比重
-     */
-    private double ratio(ArrayList<Integer> range) {
-        int numOfT = 0;
-        for (int i = 0; i < range.size(); i++) {
-            if (this.tupleArrayList.get(i).labelValue) {
-                numOfT++;
-            }
-        }
-        return (double) numOfT / range.size();
-    }
-
-    /**
      * @param aRange:获取属性的范围
      * @param iRange:获取元组的范围
      * @return 信息增益最高的属性类
@@ -247,7 +205,7 @@ public class DataBase {
      */
     public Status availableA(ArrayList<Integer> iRange) {
         String[] tempContent = tupleArrayList.get(iRange.get(0)).infoList;
-        Boolean tempLabelValue = tupleArrayList.get(iRange.get(0)).labelValue;
+        String tempLabelValue = tupleArrayList.get(iRange.get(0)).labelValue;
         Status result = new Status();
         for (int i = 0, length = this.stringArrayList.size(); i < length; i++) {
             for (Integer integer : iRange) {

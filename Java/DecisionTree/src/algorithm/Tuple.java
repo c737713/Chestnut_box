@@ -5,9 +5,9 @@ package algorithm;
  */
 public class Tuple {
     String[] infoList;
-    Boolean labelValue;
+    String labelValue;
 
-    public Tuple(DataBase target, String[] infoList, Boolean labelValue) throws SecondException {
+    public Tuple(DataBase target, String[] infoList, String labelValue) throws SecondException {
         if (infoList.length < target.stringArrayList.size()) {
             throw new SecondException("属性数量不足");
         }

@@ -2,6 +2,7 @@ package algorithm;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Objects;
 import java.util.Queue;
 
 import static java.lang.String.format;
@@ -27,8 +28,8 @@ public class Id3Tree {
             root = null;
             return;
         } else if (forTrainingData.tupleArrayList.size() == 1) {
-            root.leafValue = true;
-            root.outPut = forTrainingData.tupleArrayList.get(0).labelValue.toString();
+            root.outPut = forTrainingData.tupleArrayList.get(0).labelValue;
+            root.leafValue = root.outPut;
         }
         root.indexList = new ArrayList<>();
         root.outPut = "根节点";
@@ -107,8 +108,8 @@ public class Id3Tree {
                 }
             }
         }
-        resultSet.rValues= cur.leafValue;
-        resultSet.tValues= target.labelValue;
+        resultSet.decisionRes = cur.leafValue;
+        resultSet.resourceRes = target.labelValue;
         return resultSet;
     }
 
@@ -116,16 +117,16 @@ public class Id3Tree {
         StringBuffer sb=new StringBuffer("验证:");
         int deep = 0;
         boolean correct=true;
-        ArrayList<Integer> errorList = new ArrayList<>();
+        ArrayList<ErrorResult> errorList = new ArrayList<>();
         try{
             for (int i = 0; i < target.tupleArrayList.size(); i++) {
                 TestResult ts=this.test(target.tupleArrayList.get(i));
                 if(ts.deepValues>deep){
                     deep= ts.deepValues;
                 }
-                if(ts.rValues!= ts.tValues){
+                if(!Objects.equals(ts.decisionRes, ts.resourceRes)){
                     correct=false;
-                    errorList.add(i);
+                    errorList.add(new ErrorResult(ts.decisionRes,i));
                 }
             }
         }catch (SecondException e){
@@ -139,10 +140,12 @@ public class Id3Tree {
             sb.append(",可是验证结果错误,出错的结果集如下:");
             System.out.println(sb);
             for (int i = 0; i < errorList.size(); i++) {
-                for (int i1 = 0; i1 < target.tupleArrayList.get(errorList.get(i)).infoList.length; i1++) {
+                for (int i1 = 0; i1 < target.tupleArrayList.get(errorList.get(i).index).infoList.length; i1++) {
                     System.out.print(target.tupleArrayList.get(i).infoList[i1]+" ");
                 }
-                System.out.printf("原数据集上的标签值为%s,而决策的结果与其不一致",target.tupleArrayList.get(errorList.get(i)).labelValue);
+                System.out.printf("原数据集上的标签值为%s,而决策的结果与其不一致,为%s",
+                        target.tupleArrayList.get(errorList.get(i).index).labelValue,
+                        errorList.get(i).errorInfo);
             }
         }
     }

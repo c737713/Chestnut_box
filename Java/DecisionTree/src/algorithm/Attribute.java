@@ -8,10 +8,8 @@ import java.util.ArrayList;
 public class Attribute {
     String name;
     Double gainInformation;
-    ArrayList<OptionList> optionLists = null;
+    ArrayList<OptionList> optionLists ;
 
-    public Attribute() {
-    }
 
     public Attribute(String name, ArrayList<OptionList> optionLists) {
         this.name = name;
