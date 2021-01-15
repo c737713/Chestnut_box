@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc106cc-3b49-4294-817d-865e3512c45d" name="默认的" comment="实现了决策树的界面化,还没有实现层序遍历啊(20200115)" />
+    <list default="true" id="0bc106cc-3b49-4294-817d-865e3512c45d" name="默认的" comment="实现了决策树的界面化,还没有实现层序遍历啊(20200115)">
+      <change beforePath="$PROJECT_DIR$/src/algorithm/Attribute.java" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/algorithm/Attribute.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/algorithm/DataBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/ErrorResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/algorithm/ErrorResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/Id3Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/algorithm/Id3Tree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/Label.java" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/algorithm/Label.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/OptionList.java" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/algorithm/OptionList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/SecondException.java" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/algorithm/SecondException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/algorithm/Status.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/TestResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/algorithm/TestResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/TreeNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/algorithm/TreeNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/Tuple.java" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/algorithm/Tuple.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datasource/a.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/datasource/a.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datasource/b.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/datasource/b.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interaction/InterFace.java" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/interaction/InterFace.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,18 +48,17 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="jdk.selected.JAVA_MODULE" value="14" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\gitArea\Chestnut_box\Java\DecisionTree\tree\src" />
+    </key>
   </component>
   <component name="RunManager" selected="应用程序.InterFace">
-    <configuration name="InterFace" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="14" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="interaction.InterFace" />
-      <module name="DecisionTree" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="14" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -130,5 +144,12 @@
     <MESSAGE value="将输出的结果从true/false变成可以有多个输出(20200114)" />
     <MESSAGE value="实现了决策树的界面化,还没有实现层序遍历啊(20200115)" />
     <option name="LAST_COMMIT_MESSAGE" value="实现了决策树的界面化,还没有实现层序遍历啊(20200115)" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/DecisionTree$InterFace.ic" NAME="InterFace 覆盖结果" MODIFIED="1610687091291" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
