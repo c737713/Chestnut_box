@@ -97,13 +97,19 @@ public class Id3Tree {
         resultSet.deepValues=1;
         TreeNode cur=this.root;
         while(cur.leafValue==null){
+            boolean found=false;
             int flag=this.forTrainingData.attributeIndex(cur.attribute);
             resultSet.deepValues++;
             for (TreeNode tempNode: cur.childList) {
                 if(target.infoList[flag].equals(tempNode.outPut)){
                     cur=tempNode;
+                    found=true;
                     break;
                 }
+            }
+            if(!found){
+                resultSet.decisionRes = this.forTrainingData.whichMore(cur.indexList);
+                resultSet.resourceRes = target.labelValue;
             }
         }
         resultSet.decisionRes = cur.leafValue;
@@ -172,13 +178,22 @@ public class Id3Tree {
         ArrayList<TreeNode> result=new ArrayList<>();
         TreeNode cur=this.root;
         while (cur.leafValue==null){
+            boolean found=false;
             result.add(cur);
             int flag = this.forTestingData.attributeIndex(cur.attribute);
             for(TreeNode tempNode: cur.childList){
                 if(strings[flag].equals(tempNode.outPut)){
                     cur=tempNode;
+                    found=true;
                     break;
                 }
+            }
+            if(!found){
+                TreeNode temp=new TreeNode();
+                temp.leafValue=this.forTrainingData.whichMore(cur.indexList);
+                temp.outPut="未定义";
+                result.add(temp);
+                return result;
             }
         }
         result.add(cur);

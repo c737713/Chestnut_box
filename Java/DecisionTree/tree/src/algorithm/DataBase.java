@@ -86,7 +86,7 @@ public class DataBase {
         }
         var result=0.0;
         for(Label temp:labelList){
-            double ra=temp.labelCount/ (double)labelList.size();
+            double ra= (double)labelList.size()/temp.labelCount;
             result-=ra*Math.log(ra)/Math.log(2.0);
         }
         return result;
@@ -211,5 +211,31 @@ public class DataBase {
             }
         }
         return result;
+    }
+
+    public String whichMore(ArrayList<Integer> iRange){
+        ArrayList<Label> labelList=new ArrayList<>();
+        for(Integer index:iRange){
+            String tempString=this.tupleArrayList.get(index).labelValue;
+            boolean repeated=false;
+            for (Label label : labelList) {
+                if (tempString.equals(label.labelValue)) {
+                    label.labelCount++;
+                    repeated = true;
+                    break;
+                }
+            }
+            if(!repeated){
+                labelList.add(new Label(tempString));
+                labelList.get(labelList.size()-1).labelCount++;
+            }
+        }
+        int max=0;
+        for (int i = 0; i < labelList.size(); i++) {
+            if(labelList.get(i).labelCount>labelList.get(max).labelCount){
+                max=i;
+            }
+        }
+        return labelList.get(max).labelValue+"(缺乏对应模型)";
     }
 }

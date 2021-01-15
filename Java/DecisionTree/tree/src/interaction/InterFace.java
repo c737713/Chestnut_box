@@ -18,45 +18,29 @@ import java.util.ArrayList;
 public class InterFace {
     public static void main(String[] args) {
         final Id3Tree[] id3Tree = {null};
+        final int columnWidth=38;
 
         JFrame jf = new JFrame("决策树(id3)");
-        jf.setBounds(400,300,380,500);
+        jf.setBounds(400,300,410,500);
         jf.setLayout(new FlowLayout(FlowLayout.LEFT));
         jf.setResizable(false);
 
         JLabel text1=new JLabel("输入训练集路径:");
-        JTextField jTextField1 = new JTextField("D:\\gitArea\\Chestnut_box\\Java\\DecisionTree\\src\\datasource\\a.txt",35);
+        JTextField jTextField1 = new JTextField("D:\\gitArea\\Chestnut_box\\Java\\DecisionTree\\tree\\src\\datasource\\d.txt",columnWidth);
         JLabel text3=new JLabel("输入测试集路径:");
-        JTextField jTextField2 = new JTextField("D:\\gitArea\\Chestnut_box\\Java\\DecisionTree\\src\\datasource\\b.txt",35);
+        JTextField jTextField2 = new JTextField("D:\\gitArea\\Chestnut_box\\Java\\DecisionTree\\tree\\src\\datasource\\e.txt",columnWidth);
         JLabel text4 =new JLabel("单条内容测试:");
-        JTextField jTextField3 = new JTextField("晴 中 低 是 true",35);
+        JTextField jTextField3 = new JTextField("晴 中 低 是 true",columnWidth);
         JButton pullIn = new JButton("引入");
         JButton ver = new JButton("验证");
         JButton exam = new JButton("测试");
         JButton testOneByOne = new JButton("逐个测试");
         JButton print = new JButton("层序打印");
         JLabel text5 = new JLabel("显示区:                                               ");
-        JTextArea textArea =new JTextArea("",15,35);
+        JTextArea textArea =new JTextArea("",15,columnWidth);
         textArea.setLineWrap(true);
         JPanel jPanel=new JPanel();
         jPanel.add(new JScrollPane(textArea));
-
-
-        jf.add(text1);
-        jf.add(jTextField1);
-        jf.add(text3);
-        jf.add(jTextField2);
-        jf.add(text4);
-        jf.add(jTextField3);
-        jf.add(pullIn);
-        jf.add(ver);
-        jf.add(exam);
-        jf.add(testOneByOne);
-        jf.add(print);
-        jf.add(text5);
-        jf.add(jPanel);
-        jf.setVisible(true);
-        jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         pullIn.addActionListener(new AbstractAction() {
             @Override
@@ -104,6 +88,10 @@ public class InterFace {
         testOneByOne.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(id3Tree[0]==null){
+                    textArea.append("请先引入数据集\n");
+                    return;
+                }
                 try {
                     String[] strings=jTextField3.getText().split(" ");
                     ArrayList<TreeNode> treeNodes=id3Tree[0].testByOne(strings);
@@ -133,5 +121,21 @@ public class InterFace {
                 }
             }
         });
+
+        jf.add(text1);
+        jf.add(jTextField1);
+        jf.add(text3);
+        jf.add(jTextField2);
+        jf.add(text4);
+        jf.add(jTextField3);
+        jf.add(pullIn);
+        jf.add(ver);
+        jf.add(exam);
+        jf.add(testOneByOne);
+        jf.add(print);
+        jf.add(text5);
+        jf.add(jPanel);
+        jf.setVisible(true);
+        jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 }
