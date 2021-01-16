@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/tree/tree.iml" filepath="$PROJECT_DIR$/tree/tree.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../GooseberryBox-Java-/tree/tree.iml" filepath="$PROJECT_DIR$/../../../GooseberryBox-Java-/tree/tree.iml" />
     </modules>
   </component>
 </project>

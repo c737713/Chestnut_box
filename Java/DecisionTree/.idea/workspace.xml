@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bc106cc-3b49-4294-817d-865e3512c45d" name="默认的" comment="实现了决策树的界面化,还没有实现层序遍历啊(20200115)">
-      <change beforePath="$PROJECT_DIR$/src/algorithm/Attribute.java" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/algorithm/Attribute.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/DataBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/algorithm/DataBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/ErrorResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/algorithm/ErrorResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/Id3Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/algorithm/Id3Tree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/Label.java" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/algorithm/Label.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/OptionList.java" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/algorithm/OptionList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/SecondException.java" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/algorithm/SecondException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/algorithm/Status.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/TestResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/algorithm/TestResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/TreeNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/algorithm/TreeNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/Tuple.java" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/algorithm/Tuple.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datasource/a.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/datasource/a.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/datasource/b.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/datasource/b.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/interaction/InterFace.java" beforeDir="false" afterPath="$PROJECT_DIR$/tree/src/interaction/InterFace.java" afterDir="false" />
-    </list>
+    <list default="true" id="0bc106cc-3b49-4294-817d-865e3512c45d" name="默认的" comment="添加了数据库的内容" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -89,7 +74,6 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="应用程序.InterFace" />
         <item itemvalue="应用程序.Test" />
       </list>
     </recent_temporary>
@@ -124,7 +108,21 @@
       <option name="project" value="LOCAL" />
       <updated>1610642886377</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="修改了算法的错误 添加了对于为录入的数据的估计功能">
+      <created>1610699221789</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1610699221789</updated>
+    </task>
+    <task id="LOCAL-00005" summary="添加了数据库的内容">
+      <created>1610699246623</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1610699246623</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -143,13 +141,38 @@
     <MESSAGE value="决策树 算法的实现 数据误删了 界面还没有实现(20200114)" />
     <MESSAGE value="将输出的结果从true/false变成可以有多个输出(20200114)" />
     <MESSAGE value="实现了决策树的界面化,还没有实现层序遍历啊(20200115)" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现了决策树的界面化,还没有实现层序遍历啊(20200115)" />
+    <MESSAGE value="修改了算法的错误 添加了对于为录入的数据的估计功能" />
+    <MESSAGE value="添加了数据库的内容" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了数据库的内容" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/tree/src/algorithm/Id3Tree.java</url>
+          <line>173</line>
+          <properties class="algorithm.Id3Tree" method="testByOne">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="tempNode.getOutPut()" />
+        <watch expression="ra*Math.log(ra)/Math.log(2.0)" />
+        <watch expression="ra" />
+        <watch expression="temp.labelCount" />
+        <watch expression="labelList.size()" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/DecisionTree$InterFace.ic" NAME="InterFace 覆盖结果" MODIFIED="1610687091291" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/DecisionTree$InterFace.ic" NAME="InterFace 覆盖结果" MODIFIED="1610697836464" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
